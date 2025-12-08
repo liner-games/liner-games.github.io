@@ -13,6 +13,11 @@
 <header>
     <div class="container navbar">
         <div class="logo">PC<span>components</span></div>
+        <div class="burger" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <nav>
             <ul class="nav-links">
                 <li><a href="#">Главная</a></li>
@@ -77,5 +82,22 @@
         <p>&copy; 2025 PCcomponents. Все права защищены.</p>
     </div>
 </footer>
+
+<script>
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('nav');
+
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        nav.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            burger.classList.remove('active');
+            nav.classList.remove('active');
+        });
+    });
+</script>
 </body>
 </html>
