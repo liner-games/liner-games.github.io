@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCcomponents</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <script type="module" src="../js/pages/catalog.js"></script>
+</head>
+<body>
+<header>
+    <div class="container navbar">
+        <div class="logo">PC<span>components</span></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="#">Каталог</a></li>
+                <li><a href="../comparison/index.html">Сравнение</a></li>
+                <li><a href="../contacts/index.html">Контакты</a></li>
+                <li class="cart-icon-container">
+                    <div class="cart-icon" id="cartToggle">
+                        Корзина <span id="cartCount">0</span>
+                    </div>
+
+                    <div class="cart-modal" id="cartModal">
+                        <div class="modal-content">
+                            <span class="cart-close" id="cartClose">&times;</span>
+                            <h2>Корзина</h2>
+
+                            <div class="cart-items" id="cartItems"></div>
+
+                            <div class="cart-total">
+                                Итого: <span id="cartTotal">0</span> руб.
+                            </div>
+                            <a href="../cart/index.html" class="button">Перейти в корзину</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<main>
+    <div class="container catalog-layout">
+        <aside class="filters">
+            <h2>Фильтры</h2>
+            <label>
+                <input id="searchQuery" type="text" data-localizationKey="search" placeholder="Введите ваш запрос..." >
+            </label>
+
+            <div class="filter-group">
+                <h4>Категория</h4>
+                <input type="radio" name="category" value="all" class="radio-input" id="categoryAll" checked>
+                <label for="categoryAll" class="radio-label">Все товары</label>
+
+                <input type="radio" name="category" value="cpu" class="radio-input" id="categoryCPU">
+                <label for="categoryCPU" class="radio-label">Процессоры</label>
+
+                <input type="radio" name="category" value="gpu" class="radio-input" id="categoryGPU">
+                <label for="categoryGPU" class="radio-label">Видеокарты</label>
+
+                <input type="radio" name="category" value="ram" class="radio-input" id="categoryRAM">
+                <label for="categoryRAM" class="radio-label">Оперативная память</label>
+
+                <input type="radio" name="category" value="motherboard" class="radio-input" id="categoryMB">
+                <label for="categoryMB" class="radio-label">Материнские платы</label>
+            </div>
+
+            <div class="filter-group vendors" id="vendor-filters"></div>
+
+            <div class="filter-group sort">
+                <h4>Сортировка</h4>
+                <select id="sortSelect" class="sort-select">
+                    <option value="name-asc">По названию (А-Я)</option>
+                    <option value="name-desc">По названию (Я-А)</option>
+                    <option value="price-asc">По цене (возр.)</option>
+                    <option value="price-desc">По цене (убыв.)</option>
+                </select>
+            </div>
+
+            <div class="filter-buttons">
+                <a href="#" class="button" id="applyFilters">Применить фильтры</a>
+                <a href="#" class="button secondary-button" id="resetFilters">Сбросить фильтры</a>
+            </div>
+        </aside>
+
+        <div class="products-container">
+            <div class="products-header">
+                <h1>Каталог комплектующих</h1>
+                <div class="products-count">Найдено товаров: <span id="productsCount">0</span></div>
+            </div>
+            <div id="products" class="products-grid"></div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 PCcomponents. Все права защищены.</p>
+    </div>
+</footer>
+</body>
+</html>
