@@ -8,6 +8,7 @@
     --text-heading-color: #eeffff;
     --accent-color: #F84A67;
     --card-color: #062e4e;
+    --text-color: #cccccc;
 }
 
 body {
@@ -136,4 +137,193 @@ footer {
 
 footer p {
     color: #555555;
+}
+
+.contact-section {
+    padding: 50px 0;
+}
+
+.contact-section h1 {
+    color: var(--text-heading-color);
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* Контактная информация */
+.contact-info {
+    background-color: var(--card-color);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    color: var(--text-color);
+}
+
+.info-item .icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    color: var(--accent-color);
+    flex-shrink: 0;
+}
+
+.info-item p {
+    margin: 0;
+    line-height: 1.4;
+    font-size: 1rem;
+}
+
+.info-item a:hover {
+    color: var(--accent-color);
+}
+
+.info-item p strong {
+    display: block;
+    color: var(--text-heading-color);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+/* Форма обратной связи */
+.contact-form-card {
+    background-color: var(--card-color);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contact-form-card h2 {
+    color: var(--text-heading-color);
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #2946a3;
+    border-radius: 6px;
+    background-color: var(--bg-dark-color);
+    color: #eeffff;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.map-section {
+    padding-top: 50px;
+}
+
+.map-section h2 {
+    color: var(--text-heading-color);
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.map-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    height: 400px;
+    width: 100%;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.success-message {
+    text-align: center;
+    padding: 20px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 8px;
+    margin-top: 20px;
+    display: none;
+}
+
+@media (max-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    .contact-section h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 15px;
+    }
+
+    .logo {
+        margin-bottom: 15px;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    header {
+        height: auto;
+        padding-bottom: 15px;
+    }
+    .contact-section {
+        padding: 30px 0;
+    }
 }
