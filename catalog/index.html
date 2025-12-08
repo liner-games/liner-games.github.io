@@ -117,26 +117,27 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const burger = document.getElementById('burger');
-        const navLinks = document.getElementById('navLinks');
+        const navLinks = document.querySelector('.nav-links');
         const cartToggle = document.getElementById('cartToggle');
         const cartModal = document.getElementById('cartModal');
         const cartClose = document.getElementById('cartClose');
         const filtersToggle = document.getElementById('filtersToggle');
         const filtersContent = document.getElementById('filtersContent');
-        const productsContainer = document.getElementById('products');
 
         burger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             burger.classList.toggle('open');
-
+            
             if (cartModal.classList.contains('active')) {
                 cartModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         });
 
         cartToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             cartModal.classList.toggle('active');
+            document.body.style.overflow = cartModal.classList.contains('active') ? 'hidden' : 'auto';
 
             if (navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
@@ -146,6 +147,7 @@
 
         cartClose.addEventListener('click', () => {
             cartModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
         });
 
         document.addEventListener('click', (e) => {
@@ -154,15 +156,11 @@
                 e.target !== cartToggle &&
                 !cartToggle.contains(e.target)) {
                 cartModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         });
 
         if (filtersToggle) {
-            const isMobile = window.matchMedia('(max-width: 1024px)').matches;
-            if (isMobile) {
-                filtersContent.classList.remove('active');
-            }
-
             filtersToggle.addEventListener('click', (e) => {
                 e.preventDefault();
                 filtersContent.classList.toggle('active');
@@ -172,31 +170,15 @@
             });
 
             window.addEventListener('resize', () => {
-                const isDesktop = window.matchMedia('(min-width: 1025px)').matches;
+                const isDesktop = window.innerWidth > 1024;
                 if (isDesktop) {
                     filtersContent.classList.add('active');
-                } else {
-                    // Если переключились на мобильный, убедимся, что она скрыта
-                    filtersContent.classList.remove('active');
-                    filtersToggle.textContent = 'Показать/Скрыть Фильтры';
+                    filtersToggle.textContent = 'Скрыть Фильтры';
+                } else if (!filtersContent.classList.contains('active')) {
+                    filtersToggle.textContent = 'Показать Фильтры';
                 }
             });
         }
-
-        productsContainer.querySelectorAll('.product-card').forEach(card => {
-            const addToCartBtn = card.querySelector('.add-to-cart');
-            const countButtons = card.querySelector('.item-count-buttons');
-
-            addToCartBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                addToCartBtn.style.display = 'none';
-                countButtons.style.display = 'flex';
-                y
-                setTimeout(() => {
-                    countButtons.classList.add('active');
-                }, 10);
-            });
-        });
     });
 </script>
 </body>
