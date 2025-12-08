@@ -115,70 +115,19 @@
 </footer>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const burger = document.getElementById('burger');
-        const navLinks = document.querySelector('.nav-links');
-        const cartToggle = document.getElementById('cartToggle');
-        const cartModal = document.getElementById('cartModal');
-        const cartClose = document.getElementById('cartClose');
-        const filtersToggle = document.getElementById('filtersToggle');
-        const filtersContent = document.getElementById('filtersContent');
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('nav');
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        nav.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    });
+    
+    const filtersToggle = document.querySelector('.filters-toggle-button');
+    const filters = document.querySelector('.filters');
 
-        burger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            burger.classList.toggle('open');
-
-            if (cartModal.classList.contains('active')) {
-                cartModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        cartToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            cartModal.classList.toggle('active');
-            document.body.style.overflow = cartModal.classList.contains('active') ? 'hidden' : 'auto';
-
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                burger.classList.remove('open');
-            }
-        });
-
-        cartClose.addEventListener('click', () => {
-            cartModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-
-        document.addEventListener('click', (e) => {
-            if (cartModal.classList.contains('active') &&
-                !cartModal.contains(e.target) &&
-                e.target !== cartToggle &&
-                !cartToggle.contains(e.target)) {
-                cartModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        if (filtersToggle) {
-            filtersToggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                filtersContent.classList.toggle('active');
-                filtersToggle.textContent = filtersContent.classList.contains('active') ?
-                    'Скрыть Фильтры' :
-                    'Показать Фильтры';
-            });
-
-            window.addEventListener('resize', () => {
-                const isDesktop = window.innerWidth > 1024;
-                if (isDesktop) {
-                    filtersContent.classList.add('active');
-                    filtersToggle.textContent = 'Скрыть Фильтры';
-                } else if (!filtersContent.classList.contains('active')) {
-                    filtersToggle.textContent = 'Показать Фильтры';
-                }
-            });
-        }
+    filtersToggle?.addEventListener('click', () => {
+        filters.classList.toggle('active');
     });
 </script>
 </body>
