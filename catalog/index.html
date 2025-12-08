@@ -54,11 +54,11 @@
         <aside class="filters">
             <h2>Фильтры</h2>
 
-            <a href="#" class="button filters-toggle-button" id="filtersToggle">Показать/Скрыть Фильтры</a>
+            <a href="#" class="button filters-toggle-button" id="filtersToggle">Показать фильтры</a>
 
-            <div class="filters-content active" id="filtersContent">
+            <div class="filters-content" id="filtersContent">
                 <label>
-                    <input id="searchQuery" type="text" data-localizationKey="search" placeholder="Введите ваш запрос..." >
+                    <input id="searchQuery" type="text" placeholder="Введите ваш запрос..." >
                 </label>
 
                 <div class="filter-group">
@@ -127,7 +127,7 @@
         burger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             burger.classList.toggle('open');
-            
+
             if (cartModal.classList.contains('active')) {
                 cartModal.classList.remove('active');
                 document.body.style.overflow = 'auto';
