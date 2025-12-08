@@ -15,6 +15,11 @@
 <header>
     <div class="container navbar">
         <div class="logo">PC<span>components</span></div>
+        <div class="burger" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <nav>
             <ul class="nav-links">
                 <li><a href="../index.html">Главная</a></li>
@@ -48,43 +53,48 @@
     <div class="container catalog-layout">
         <aside class="filters">
             <h2>Фильтры</h2>
-            <label>
-                <input id="searchQuery" type="text" data-localizationKey="search" placeholder="Введите ваш запрос..." >
-            </label>
 
-            <div class="filter-group">
-                <h4>Категория</h4>
-                <input type="radio" name="category" value="all" class="radio-input" id="categoryAll" checked>
-                <label for="categoryAll" class="radio-label">Все товары</label>
+            <a href="#" class="button filters-toggle-button" id="filtersToggle">Показать/Скрыть Фильтры</a>
 
-                <input type="radio" name="category" value="cpu" class="radio-input" id="categoryCPU">
-                <label for="categoryCPU" class="radio-label">Процессоры</label>
+            <div class="filters-content active" id="filtersContent">
+                <label>
+                    <input id="searchQuery" type="text" data-localizationKey="search" placeholder="Введите ваш запрос..." >
+                </label>
 
-                <input type="radio" name="category" value="gpu" class="radio-input" id="categoryGPU">
-                <label for="categoryGPU" class="radio-label">Видеокарты</label>
+                <div class="filter-group">
+                    <h4>Категория</h4>
+                    <input type="radio" name="category" value="all" class="radio-input" id="categoryAll" checked>
+                    <label for="categoryAll" class="radio-label">Все товары</label>
 
-                <input type="radio" name="category" value="ram" class="radio-input" id="categoryRAM">
-                <label for="categoryRAM" class="radio-label">Оперативная память</label>
+                    <input type="radio" name="category" value="cpu" class="radio-input" id="categoryCPU">
+                    <label for="categoryCPU" class="radio-label">Процессоры</label>
 
-                <input type="radio" name="category" value="motherboard" class="radio-input" id="categoryMB">
-                <label for="categoryMB" class="radio-label">Материнские платы</label>
-            </div>
+                    <input type="radio" name="category" value="gpu" class="radio-input" id="categoryGPU">
+                    <label for="categoryGPU" class="radio-label">Видеокарты</label>
 
-            <div class="filter-group vendors" id="vendor-filters"></div>
+                    <input type="radio" name="category" value="ram" class="radio-input" id="categoryRAM">
+                    <label for="categoryRAM" class="radio-label">Оперативная память</label>
 
-            <div class="filter-group sort">
-                <h4>Сортировка</h4>
-                <select id="sortSelect" class="sort-select">
-                    <option value="name-asc">По названию (А-Я)</option>
-                    <option value="name-desc">По названию (Я-А)</option>
-                    <option value="price-asc">По цене (возр.)</option>
-                    <option value="price-desc">По цене (убыв.)</option>
-                </select>
-            </div>
+                    <input type="radio" name="category" value="motherboard" class="radio-input" id="categoryMB">
+                    <label for="categoryMB" class="radio-label">Материнские платы</label>
+                </div>
 
-            <div class="filter-buttons">
-                <a href="#" class="button" id="applyFilters">Применить фильтры</a>
-                <a href="#" class="button secondary-button" id="resetFilters">Сбросить фильтры</a>
+                <div class="filter-group vendors" id="vendor-filters"></div>
+
+                <div class="filter-group sort">
+                    <h4>Сортировка</h4>
+                    <select id="sortSelect" class="sort-select">
+                        <option value="name-asc">По названию (А-Я)</option>
+                        <option value="name-desc">По названию (Я-А)</option>
+                        <option value="price-asc">По цене (возр.)</option>
+                        <option value="price-desc">По цене (убыв.)</option>
+                    </select>
+                </div>
+
+                <div class="filter-buttons">
+                    <a href="#" class="button" id="applyFilters">Применить фильтры</a>
+                    <a href="#" class="button secondary-button" id="resetFilters">Сбросить фильтры</a>
+                </div>
             </div>
         </aside>
 
@@ -103,5 +113,91 @@
         <p>&copy; 2025 PCcomponents. Все права защищены.</p>
     </div>
 </footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const burger = document.getElementById('burger');
+        const navLinks = document.getElementById('navLinks');
+        const cartToggle = document.getElementById('cartToggle');
+        const cartModal = document.getElementById('cartModal');
+        const cartClose = document.getElementById('cartClose');
+        const filtersToggle = document.getElementById('filtersToggle');
+        const filtersContent = document.getElementById('filtersContent');
+        const productsContainer = document.getElementById('products');
+
+        burger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            burger.classList.toggle('open');
+
+            if (cartModal.classList.contains('active')) {
+                cartModal.classList.remove('active');
+            }
+        });
+
+        cartToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            cartModal.classList.toggle('active');
+
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                burger.classList.remove('open');
+            }
+        });
+
+        cartClose.addEventListener('click', () => {
+            cartModal.classList.remove('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (cartModal.classList.contains('active') &&
+                !cartModal.contains(e.target) &&
+                e.target !== cartToggle &&
+                !cartToggle.contains(e.target)) {
+                cartModal.classList.remove('active');
+            }
+        });
+
+        if (filtersToggle) {
+            const isMobile = window.matchMedia('(max-width: 1024px)').matches;
+            if (isMobile) {
+                filtersContent.classList.remove('active');
+            }
+
+            filtersToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                filtersContent.classList.toggle('active');
+                filtersToggle.textContent = filtersContent.classList.contains('active') ?
+                    'Скрыть Фильтры' :
+                    'Показать Фильтры';
+            });
+
+            window.addEventListener('resize', () => {
+                const isDesktop = window.matchMedia('(min-width: 1025px)').matches;
+                if (isDesktop) {
+                    filtersContent.classList.add('active');
+                } else {
+                    // Если переключились на мобильный, убедимся, что она скрыта
+                    filtersContent.classList.remove('active');
+                    filtersToggle.textContent = 'Показать/Скрыть Фильтры';
+                }
+            });
+        }
+
+        productsContainer.querySelectorAll('.product-card').forEach(card => {
+            const addToCartBtn = card.querySelector('.add-to-cart');
+            const countButtons = card.querySelector('.item-count-buttons');
+
+            addToCartBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                addToCartBtn.style.display = 'none';
+                countButtons.style.display = 'flex';
+                y
+                setTimeout(() => {
+                    countButtons.classList.add('active');
+                }, 10);
+            });
+        });
+    });
+</script>
 </body>
 </html>
