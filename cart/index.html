@@ -40,7 +40,17 @@
                 <h3><span id="cartTotalItems">0</span> товаров</h3>
                 <h3 id="cartTotal">0</h3>
             </div>
-            <a class="button">Перейти к оформлению</a>
+            <a class="button" id="checkout">Перейти к оформлению</a>
+        </div>
+
+        <div id="messageBox" class="message-box-overlay">
+            <div class="message-box-content">
+                <h3 id="messageTitle" class="message-box-title"></h3>
+                <p id="messageText" class="message-box-text"></p>
+                <button onclick="hideMessageBox()" class="message-box-button">
+                    ОК
+                </button>
+            </div>
         </div>
     </div>
 </main>
@@ -49,5 +59,31 @@
         <p>&copy; 2025 PCcomponents. Все права защищены.</p>
     </div>
 </footer>
+
+<script>
+    function showMessageBox(title, text) {
+        document.getElementById('messageTitle').textContent = title;
+        document.getElementById('messageText').textContent = text;
+        document.getElementById('messageBox').classList.add('show');
+    }
+
+    function hideMessageBox() {
+        document.getElementById('messageBox').classList.remove('show');
+    }
+
+    document.getElementById('checkout').addEventListener('click', () => {
+        const total = document.getElementById('cartTotal');
+
+        if (Number(total.textContent) === 0) {
+            showMessageBox("Ошибка", "Корзина пуста");
+            return;
+        }
+
+        showMessageBox(
+            "Заказ оформлен!",
+            `Ваш заказ на сумму ${total.textContent} успешно передан в обработку. Спасибо за покупку!`
+        );
+    });
+</script>
 </body>
 </html>

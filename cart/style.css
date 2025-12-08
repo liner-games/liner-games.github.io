@@ -8,6 +8,7 @@
     --text-heading-color: #eeffff;
     --accent-color: #F84A67;
     --card-color: #062e4e;
+    --text-muted: #94a3b8;
 }
 
 body {
@@ -204,6 +205,70 @@ main {
 
 .cart-control {
     color: #fff;
+}
+
+.message-box-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.message-box-overlay.show {
+    display: flex;
+}
+
+.message-box-content {
+    background-color: var(--bg-color);
+    padding: 2.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    max-width: 450px;
+    width: 100%;
+    border: 1px solid var(--accent-color);
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.message-box-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.message-box-text {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-size: 16px;
+}
+
+.message-box-button {
+    background-color: var(--accent-color);
+    width: 100%;
+    color: var(--bg-dark-color);
+    font-weight: bold;
+    padding: 0.75rem 0;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+.message-box-button:hover {
+    background-color: #60a5fa;
 }
 
 footer {
