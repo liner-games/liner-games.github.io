@@ -13,15 +13,18 @@
 <header>
     <div class="container navbar">
         <div class="logo">PC<span>components</span></div>
+        <div class="burger" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <nav>
             <ul class="nav-links">
                 <li><a href="../index.html">Главная</a></li>
-                <li><a href="#">Каталог</a></li>
-                <li><a href="#">Сравнение</a></li>
-                <li><a href="#">Контакты</a></li>
-                <li class="cart-icon" onclick="alert('cart triggered')">
-                    Корзина <span>0</span>
-                </li>
+                <li><a href="../catalog/index.html">Каталог</a></li>
+                <li><a href="../comparison/index.html">Сравнение</a></li>
+                <li><a href="../contacts/index.html">Контакты</a></li>
+                <li><a href="../cart/index.html">Корзина</a></li>
             </ul>
         </nav>
     </div>
@@ -83,12 +86,8 @@
         <div class="container">
             <h2>Мы на карте</h2>
             <div class="map-container">
-                <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2244.755088277255!2d37.61763371587636!3d55.75124407519985!2m3!1f0!2m3!1f0!2m3!1f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a594896e387%3A0x28f237f8f9e6d7a!2sRed%20Square%2C%20Moscow%2C%20Russia!5e0!3m2!1sen!2sua!4v1700000000000"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1888.6303751011562!2d37.50487817403052!3d55.74160366903563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54957194432dd%3A0xd780fda110bdc756!2z0KLQpiDQk9C-0YDQsdGD0YjQutCw!5e0!3m2!1sru!2sae!4v1765231164436!5m2!1sru!2sae"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
@@ -127,6 +126,39 @@
             document.getElementById('message').value = '';
 
         }, 1500);
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const burger = document.getElementById('burger');
+        const nav = document.querySelector('nav');
+        const body = document.body;
+
+        if (burger) {
+            burger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                nav.classList.toggle('active');
+                body.classList.toggle('menu-open');
+            });
+
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    burger.classList.remove('active');
+                    nav.classList.remove('active');
+                    body.classList.remove('menu-open');
+                });
+            });
+
+            body.addEventListener('click', function(e) {
+                if (body.classList.contains('menu-open') &&
+                    !nav.contains(e.target) &&
+                    !burger.contains(e.target)) {
+                    burger.classList.remove('active');
+                    nav.classList.remove('active');
+                    body.classList.remove('menu-open');
+                }
+            });
+        }
     });
 </script>
 </body>
