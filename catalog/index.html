@@ -123,11 +123,14 @@
         document.body.classList.toggle('menu-open');
     });
 
-    const filtersToggle = document.querySelector('.filters-toggle-button');
+    const filtersToggleBtn = document.querySelector('.filters-toggle-button');
     const filters = document.querySelector('.filters');
 
-    filtersToggle?.addEventListener('click', () => {
+    filtersToggleBtn?.addEventListener('click', () => {
         filters.classList.toggle('active');
+        filtersToggleBtn.textContent = filters.classList.contains('active')
+            ? 'Скрыть фильтры'
+            : 'Показать фильтры';
     });
 </script>
 </body>
