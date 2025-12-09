@@ -269,6 +269,8 @@ footer p {
     width: 25px;
     height: 20px;
     cursor: pointer;
+    z-index: 103;
+    position: relative;
 }
 
 .burger span {
@@ -281,7 +283,7 @@ footer p {
 }
 
 .burger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(3px, 7px);
+    transform: rotate(45deg) translate(5px, 5px);
 }
 
 .burger.active span:nth-child(2) {
@@ -290,7 +292,7 @@ footer p {
 }
 
 .burger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(3px, -7px);
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 @media (max-width: 768px) {
