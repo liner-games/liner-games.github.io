@@ -200,6 +200,8 @@ footer p {
     width: 25px;
     height: 20px;
     cursor: pointer;
+    z-index: 101;
+    position: relative;
 }
 
 .burger span {
@@ -224,23 +226,6 @@ footer p {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
-@media (min-width: 640px) {
-    .container {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-    }
-
-    .offer-card {
-        padding: 2.5rem;
-    }
-    .offer-card h1 {
-        font-size: 3rem;
-    }
-    .offer-card li {
-        font-size: 1rem;
-    }
-}
-
 @media (max-width: 768px) {
     header {
         height: 60px;
@@ -255,7 +240,7 @@ footer p {
         width: 25px;
         height: 20px;
         cursor: pointer;
-        z-index: 103;
+        z-index: 101;
         position: relative;
     }
 
@@ -280,7 +265,7 @@ footer p {
         height: 100vh;
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         padding: 80px 25px 30px;
-        z-index: 102;
+        z-index: 100;
         box-shadow: -5px 0 25px rgba(0, 0, 0, 0.4);
         overflow-y: auto;
     }
@@ -300,7 +285,6 @@ footer p {
         backdrop-filter: blur(2px);
         z-index: 99;
         opacity: 1;
-        transition: opacity 0.3s;
     }
 
     body::before {
@@ -328,20 +312,16 @@ footer p {
     .nav-links li {
         width: 100%;
         text-align: left;
-        padding: 0;
+        padding: 12px 15px;
         border-radius: 8px;
         box-sizing: border-box;
-        list-style: none;
     }
 
-    .nav-links li a {
-        padding: 12px 15px;
-    }
-
-    .nav-links li:hover a {
+    .nav-links li:hover {
         background-color: #2946a3;
     }
 
+    
     .offer-card li {
         list-style-type: disc;
     }
@@ -381,13 +361,5 @@ footer p {
     .container {
         padding-left: 1rem;
         padding-right: 1rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    /* Контейнер */
-    .container {
-        padding-left: 2rem;
-        padding-right: 2rem;
     }
 }
