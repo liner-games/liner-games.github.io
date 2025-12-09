@@ -58,7 +58,9 @@ export const cartStore = {
     },
 
     clear() {
-        const item = this.state.filter(i => i.id !== undefined);
+        this.state = [];
+        this.save();
+        this.emitUpdate(1);
     },
 
     emitUpdate(id) {

@@ -15,15 +15,18 @@
 <header>
     <div class="container navbar">
         <div class="logo">PC<span>components</span></div>
+        <div class="burger" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <nav>
             <ul class="nav-links">
                 <li><a href="../index.html">Главная</a></li>
                 <li><a href="../catalog/index.html">Каталог</a></li>
-                <li><a href="../comparison/index.html">Сравнение</a></li>
+                <li><a href="../offer/index.html">Оферта</a></li>
                 <li><a href="../contacts/index.html">Контакты</a></li>
-                <li class="cart-icon" onclick="alert('cart triggered')">
-                    Корзина <span>0</span>
-                </li>
+                <li><a href="../cart/index.html">Корзина</a></li>
             </ul>
         </nav>
     </div>
@@ -32,7 +35,8 @@
     <div class="container cart-layout">
         <div class="cart-products">
             <h1>Корзина</h1>
-            <div class="products-grid" id="cartItems"></div>
+            <div class="products-grid" id="cartItems">
+            </div>
         </div>
         <div class="cart-control">
             <h2>Ваш заказ</h2>
@@ -61,6 +65,14 @@
 </footer>
 
 <script>
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('nav');
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        nav.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    });
+
     function showMessageBox(title, text) {
         document.getElementById('messageTitle').textContent = title;
         document.getElementById('messageText').textContent = text;

@@ -18,6 +18,10 @@ export const CartPageController = {
                 const id = Number(e.target.dataset.removeMain);
                 cartStore.remove(id);
             }
+
+            if (e.target.id === "checkout") {
+                cartStore.clear();
+            }
         });
     },
 
